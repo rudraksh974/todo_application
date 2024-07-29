@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">ToDo List</h1>
+    <div class="table-responsive">
+        
+        <table class="table table-hover mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">NO</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for todo in todos %}
+
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ todo.task }}</td>
+                    <td>{{ todo.created_at }}</td>
+                    <td>
+                        <a href="{% url 'update_todo' todo.id %}" class="btn btn-outline-dark btn-sm">Update</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'mark_complete' todo.id %}" class="btn btn-danger btn-sm">complete</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+                
+            </tbody>
+
+        </table>
+        <br>
+        <a href="{% url 'add_todo' %}" class="btn btn-primary mb-3">Add Todo</a>
+        <br><br><hr><br><br>
+        <table class="table table-hover mt-3">
+            <h1>Complete Task</h1>
+            <thead>
+                <tr>
+                    <th scope="col">NO</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">complete_Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for todo in complete_task %}
+
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ todo.task }}</td>
+                    <td>{{ todo.created_at }}</td>
+                    <td>
+                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+            
+                </tr>
+
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
