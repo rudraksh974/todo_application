@@ -3,7 +3,7 @@ from .models import Todo
 from datetime import datetime
 
 def home(request):
-    return render(request,"home.html")
+    return render(request,"index.html")
 
 def todo(request):
     task=Todo.objects.filter(is_complete=False)
